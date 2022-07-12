@@ -15,3 +15,4 @@ test/testapp/migrations/
 lib/
 scripts/
 pyvenv.cfg
+.idea

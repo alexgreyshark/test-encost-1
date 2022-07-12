@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        <a href="">test-1</a>
+    </h1>
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Найти</button>
+        </form>
+
+    </div>
+    <div>
+        <table border="1">
+        <caption>Таблица Durations, записей {{page_obj.paginator.count}}</caption>
+        <tr>
+            <th>Имя клиента</th>
+            <th>Оборудование</th>
+            <th>Начало</th>
+            <th>Конец</th>
+            <th>Режим</th>
+            <th>Продолжительность</th>
+        </tr>
+        {% for d in page_obj %}
+            <tr>
+                <td> {{ d.client.name }} </td>
+                <td> {{ d.equipment.name }}</td>
+                <td> {{ d.start|date:"d.m.Y G i s" }}</td>
+                <td> {{ d.stop|date:"d.m.Y G i s" }}</td>
+                <td> {{ d.mode.name }}</td>
+                <td> {{ d.minutes }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+</body>
+</html>
