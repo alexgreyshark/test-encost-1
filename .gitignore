@@ -1,4 +1,17 @@
 # created by virtualenv automatically
-*
-!.gitignore
-!README.md
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+demo_db.db
+
+
+# Python #
+*.py[cod]
+*$py.class
+
+test/testapp/migrations/
+lib/
+scripts/
+pyvenv.cfg
